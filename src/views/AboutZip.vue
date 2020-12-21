@@ -2,20 +2,20 @@
   <div class="about">
     
     <div class="weather">
-      <!-- <ul>
+      <ul>
         <li>{{ pref }}</li>
         <li>{{ city }}</li>
         <li>{{ town }}</li>
         <li>{{ allAddress }}</li>
       </ul>
-      <p>{{ code }}</p> -->
-      <h1 class="weather-title">Weather in {{ name }}</h1>
-      <ul>
+      <p>{{ code }}</p>
+      <!-- <h1 class="weather-title">Weather in {{ name }}</h1> -->
+      <!-- <ul>
         <li>weather：{{ main }}</li>
         <li>temperature：{{ temp }}℃</li>
         <li>humidity：{{ humidity }}％</li>
         <li>wind speed：{{ speed }}m</li>
-      </ul>
+      </ul> -->
       <a @click="$router.push({ name: 'Home' })" class="cp_btn">button</a>
     </div>
   </div>
@@ -39,26 +39,26 @@ export default {
     };
   },
   async created() {
-    // let code = await axios.get(
-    //   `https://apis.postcode-jp.com/api/v4/postcodes/${this.zip}?apiKey=ZCxePaJWxCZcvFWy8cuRrA01Sca4rCOZ8HsGePl`, { 
-    //     withCredentials: true
-    // });
-    // this.data = code.data;
-    // this.pref = this.data.pref;
-    // this.city = this.data.city;
-    // this.town = this.data.town;
-    // this.allAddress = code.allAddress;
-    // return { code: code };
+    let code = await axios.get(
+      `https://apis.postcode-jp.com/api/v4/postcodes/${this.zip}?apiKey=ZCxePaJWxCZcvFWy8cuRrA01Sca4rCOZ8HsGePl`, { 
+        withCredentials: true
+    });
+    this.data = code.data;
+    this.pref = this.data.pref;
+    this.city = this.data.city;
+    this.town = this.data.town;
+    this.allAddress = code.allAddress;
+    return { code: code };
 
-    let item = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?zip=${this.zip}&units=metric&appid=0744da2879733386661b061cd494b11d`
-    );
-    this.data = item.data;
-    this.name = this.data.name;
-    this.main = this.data.weather[0].main;
-    this.temp = this.data.main.temp;
-    this.humidity = this.data.main.humidity;
-    this.speed = this.data.wind.speed;
+    // let item = await axios.get(
+    //   `https://api.openweathermap.org/data/2.5/weather?zip=${this.zip}&units=metric&appid=0744da2879733386661b061cd494b11d`
+    // );
+    // this.data = item.data;
+    // this.name = this.data.name;
+    // this.main = this.data.weather[0].main;
+    // this.temp = this.data.main.temp;
+    // this.humidity = this.data.main.humidity;
+    // this.speed = this.data.wind.speed;
   }
 };
 </script>

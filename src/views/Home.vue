@@ -2,7 +2,7 @@
   <div class="home">
     <input type="number" v-model="zipcode" maxlength="7" minlength="7" />
     <button @click="getWeatherByZip()">Zip Code</button>
-    <p>{{ allAddress }}</p>
+    <p>{{ postcodeJp }}</p>
     <div class="flex">
     <Card v-for="(data, index) in lists" :key="index" :city="data.city" />
     </div>
@@ -48,12 +48,12 @@ export default {
       this.$router.push({ name: "AboutZip", params: { zip: this.zipcode} })
     }
   },
-  async asyncData() {
-    // let zipcode = '154-0024';
+  async created() {
     let postcodeJp = await axios.get(
-      `https://apis.postcode-jp.com/api/v4?postcode=3292763&apiKey=OAhDVYn8wbRNe9wWEL3NbgsYXZJpjejxsNIhO9x`
+      `https://apis.postcode-jp.com/api/v4/postcodes/1000001?apiKey=ZCxePaJWxCZcvFWy8cuRrA01Sca4rCOZ8HsGePl`
     );
     this.allAddress = postcodeJp.data.allAddress;
+    return { postcodeJp: postcodeJp };
   }
 };
 </script>
