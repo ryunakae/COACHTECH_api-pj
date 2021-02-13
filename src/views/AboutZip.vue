@@ -40,9 +40,9 @@ export default {
   },
   async created() {
     let code = await axios.get(
-      `https://apis.postcode-jp.com/api/v4/postcodes/${this.zip}?apiKey=ZCxePaJWxCZcvFWy8cuRrA01Sca4rCOZ8HsGePl`, { 
-        withCredentials: true
-    });
+      `https://apis.postcode-jp.com/api/v4/postcodes/${this.zip}?apiKey=ZCxePaJWxCZcvFWy8cuRrA01Sca4rCOZ8HsGePl` 
+        // withCredentials: true
+    );
     this.data = code.data;
     this.pref = this.data.pref;
     this.city = this.data.city;

@@ -1,8 +1,5 @@
 <template>
   <div class="home">
-    <input type="number" v-model="zipcode" maxlength="7" minlength="7" />
-    <button @click="getWeatherByZip()">Zip Code</button>
-    <p>{{ postcodeJp }}</p>
     <div class="flex">
     <Card v-for="(data, index) in lists" :key="index" :city="data.city" />
     </div>
@@ -52,7 +49,7 @@ export default {
     let postcodeJp = await axios.get(
       `https://apis.postcode-jp.com/api/v4/postcodes/1000001?apiKey=ZCxePaJWxCZcvFWy8cuRrA01Sca4rCOZ8HsGePl`
     );
-    this.allAddress = postcodeJp.data.allAddress;
+    this.allAddress = postcodeJp.allAddress;
     return { postcodeJp: postcodeJp };
   }
 };
